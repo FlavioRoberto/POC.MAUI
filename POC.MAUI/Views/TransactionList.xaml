@@ -4,9 +4,13 @@
              x:Class="POC.MAUI.Views.TransactionList"
              Title="TransactionList">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button BackgroundColor="{DynamicResource Primary}"
+                TextColor="{DynamicResource Secondary}"
+                Text="Cadastrar transação"
+                Clicked="OnAddTransactionButtonClicked"/>
+
+        <ListView ItemsSource="{Binding Transactions}">
+            
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

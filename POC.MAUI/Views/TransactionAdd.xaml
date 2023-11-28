@@ -3,10 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="POC.MAUI.Views.TransactionAdd"
              Title="TransactionAdd">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Spacing="10">
+        <Border BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
+                Padding="15"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 30"
+                Margin="15">
+            <Grid RowDefinitions="Auto"
+                  ColumnDefinitions="*,30">
+                <Label
+                    TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Novo"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center"
+                    />
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
+                        Text="X"
+                        Clicked="OnClosePageClicked"
+                        HorizontalOptions="Center"/>
+            </Grid>
+        </Border>
+
+        <Grid ColumnDefinitions="*,*" Margin="30,0">
+            <RadioButton HorizontalOptions="Start" IsChecked="True" Content="Receita"/>
+            <RadioButton HorizontalOptions="End" Grid.Column="1" Content="Despesa" />
+        </Grid>
+
+        <Entry  Placeholder="Descição" Margin="15,0"/>
+
+        <DatePicker Margin="15,0"/>
+
+        <Entry  Placeholder="Valor" Margin="15,10"/>
+
+        <Button Margin="15,0" Text="Salvar" HorizontalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

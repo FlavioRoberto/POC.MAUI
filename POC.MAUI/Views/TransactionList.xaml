@@ -4,10 +4,15 @@
              x:Class="POC.MAUI.Views.TransactionList"
              Title="TransactionList">
     <VerticalStackLayout>
-        <Button BackgroundColor="{DynamicResource Primary}"
-                TextColor="{DynamicResource Secondary}"
-                Text="Cadastrar transação"
+        <Button Text="Cadastrar transação"
+                BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Primary}}"
+                TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
                 Clicked="OnAddTransactionButtonClicked"/>
+
+         <Button Margin="0,10" Text="Atualizar transação"
+                 BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Primary}}"
+                 TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
+                 Clicked="OnUpdateTransactionButtonClicked"/>
 
         <ListView ItemsSource="{Binding Transactions}">
             

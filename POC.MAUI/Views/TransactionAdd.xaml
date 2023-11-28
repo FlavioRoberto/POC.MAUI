@@ -4,8 +4,8 @@
              x:Class="POC.MAUI.Views.TransactionAdd"
              Title="TransactionAdd">
     <VerticalStackLayout Spacing="10">
-        <Border BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}"
-                Padding="15"
+        <Border BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                Padding="5"
                 Stroke="Transparent"
                 StrokeShape="RoundRectangle 30"
                 Margin="15">
@@ -21,12 +21,14 @@
                     />
                 <Button Grid.Row="0"
                         Grid.Column="1"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                         TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
                         Text="X"
                         Clicked="OnClosePageClicked"
-                        HorizontalOptions="Center"/>
+                        HorizontalOptions="End"/>
             </Grid>
         </Border>
+
 
         <Grid ColumnDefinitions="*,*" Margin="30,0">
             <RadioButton HorizontalOptions="Start" IsChecked="True" Content="Receita"/>

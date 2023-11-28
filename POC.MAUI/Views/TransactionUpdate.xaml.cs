@@ -6,4 +6,9 @@ public partial class TransactionUpdate : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    void OnClosePageClicked(System.Object sender, System.EventArgs e)
+    {
+        App.Current.MainPage = new TransactionList();
+    }
 }

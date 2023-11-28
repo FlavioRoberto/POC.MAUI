@@ -17,4 +17,9 @@ public partial class TransactionList : ContentPage
     {
 		App.Current.MainPage = new TransactionAdd();
     }
+
+    private void OnUpdateTransactionButtonClicked(object sender, EventArgs e)
+    {
+        App.Current.MainPage = new TransactionUpdate();
+    }
 }

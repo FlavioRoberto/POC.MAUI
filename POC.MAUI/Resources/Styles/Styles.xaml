@@ -23,8 +23,17 @@
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <Style x:Key="TransactIconStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}" />
+    </Style>
+
+    <Style x:Key="TransactDescriptionStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#BABABA" />
+    </Style>
+
     <Style TargetType="Button">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Primary}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Black}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontAttributes" Value="Bold" />
@@ -185,7 +194,7 @@
 
     <Style TargetType="Picker">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
-        <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
+        <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray900}}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
@@ -197,8 +206,8 @@
                     <VisualState x:Name="Normal" />
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
-                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
-                            <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray600}}" />
+                            <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray600}}" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -376,6 +385,18 @@
     <Style TargetType="Page" ApplyToDerivedTypes="True">
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+    </Style>
+
+    <Style x:Key="DegradeGridStyle" TargetType="Grid">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                     <GradientStop Color="#F3F4F1" Offset="0.1" />
+                     <GradientStop Color="#D7D8D5" Offset="1.0" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="Shell" ApplyToDerivedTypes="True">

@@ -62,6 +62,7 @@
 	  <None Remove="Resources\AppIcon\appiconfg_android.svg" />
 	  <None Remove="Resources\AppIcon\appiconfg %28copiar%29.svg" />
 	  <None Remove="Views\" />
+	  <None Remove="Base\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\AppIcon\appiconfg_android.svg" />
@@ -71,5 +72,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
+	  <Folder Include="Base\" />
 	</ItemGroup>
 </Project>

@@ -3,44 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="POC.MAUI.Views.TransactionAdd"
              Title="TransactionAdd">
-    <VerticalStackLayout Spacing="10">
-        <Border BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
-                Padding="5"
-                Stroke="Transparent"
-                StrokeShape="RoundRectangle 30"
-                Margin="15">
-            <Grid RowDefinitions="Auto"
-                  ColumnDefinitions="*,30">
-                <Label
-                    TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Text="Novo"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center"
-                    />
-                <Button Grid.Row="0"
-                        Grid.Column="1"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
-                        TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}"
-                        Text="X"
-                        Clicked="OnClosePageClicked"
-                        HorizontalOptions="End"/>
+    <Grid Style="{DynamicResource DegradeGridStyle}">
+        <VerticalStackLayout Spacing="10">
+            <Border BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Primary}}"
+                    Padding="5"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 30"
+                    Margin="15">
+                <Grid RowDefinitions="Auto"
+                      ColumnDefinitions="*,30">
+                    <Label
+                        TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Novo"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Center"
+                        />
+                    <Image Grid.Row="0"
+                            Grid.Column="1"
+                            Source="close.png"
+                            WidthRequest="30"
+                            HeightRequest="30"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnClosePageClicked"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+            </Border>
+
+
+            <Grid ColumnDefinitions="*,*" Margin="30,0">
+                <RadioButton HorizontalOptions="Start" IsChecked="True" Content="Receita"/>
+                <RadioButton HorizontalOptions="End" Grid.Column="1" Content="Despesa" />
             </Grid>
-        </Border>
 
+            <Entry  Placeholder="Descição" Margin="15,0"/>
 
-        <Grid ColumnDefinitions="*,*" Margin="30,0">
-            <RadioButton HorizontalOptions="Start" IsChecked="True" Content="Receita"/>
-            <RadioButton HorizontalOptions="End" Grid.Column="1" Content="Despesa" />
-        </Grid>
+            <DatePicker Margin="15,0"/>
 
-        <Entry  Placeholder="Descição" Margin="15,0"/>
+            <Entry  Placeholder="Valor" Margin="15,10"/>
 
-        <DatePicker Margin="15,0"/>
-
-        <Entry  Placeholder="Valor" Margin="15,10"/>
-
-        <Button Margin="15,0" Text="Salvar" HorizontalOptions="Center" />
-    </VerticalStackLayout>
+            <Button Margin="15,0" Text="Salvar" HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

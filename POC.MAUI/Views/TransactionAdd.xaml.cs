@@ -1,4 +1,6 @@
-﻿namespace POC.MAUI.Views;
+﻿using POC.MAUI.Base;
+
+namespace POC.MAUI.Views;
 
 public partial class TransactionAdd : ContentPage
 {
@@ -7,8 +9,8 @@ public partial class TransactionAdd : ContentPage
         InitializeComponent();
 	}
 
-    void OnClosePageClicked(System.Object sender, System.EventArgs e)
+    void OnClosePageClicked(object sender, TappedEventArgs e)
     {
-		App.Current.MainPage = new TransactionList();
+        this.OnClosePageClicked();
     }
 }

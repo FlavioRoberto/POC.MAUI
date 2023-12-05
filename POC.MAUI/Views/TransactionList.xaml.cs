@@ -15,11 +15,11 @@ public partial class TransactionList : ContentPage
 
     private void OnAddTransactionButtonClicked(Object sender, EventArgs e)
     {
-		App.Current.MainPage = new TransactionAdd();
+        Navigation.PushModalAsync(new TransactionAdd());
     }
 
     private void OnUpdateTransactionButtonClicked(object sender, EventArgs e)
     {
-        App.Current.MainPage = new TransactionUpdate();
+        Navigation.PushModalAsync(new TransactionUpdate());
     }
 }

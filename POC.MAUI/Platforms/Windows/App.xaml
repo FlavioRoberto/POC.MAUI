@@ -1,9 +1,9 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="POC.MAUI.WinUI.App"
+    x:Class="ControleFinanceiro.MAUI.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:POC.MAUI.WinUI">
+    xmlns:local="using:ControleFinanceiro.MAUI.WinUI">
 
 </maui:MauiWinUIApplication>
 

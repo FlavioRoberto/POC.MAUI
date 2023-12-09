@@ -9,9 +9,9 @@ namespace ControleFinanceiro.Infra
 		public static IServiceCollection AddInfra(this IServiceCollection services)
         {
 			services.AddSingleton(options => 
-				new LiteDatabase($"Filename={AppSettings.DatabasePath}/database.db;Connection=Shared")
+				new LiteDatabase($"Filename={AppSettings.getDirectory()}/database.db;Connection=Shared")
 			);
-			services.AddTransient<ITransactionRepository, TransactionLiteDbRepository>();
+			services.AddSingleton<ITransactionRepository, TransactionLiteDbRepository>();
 
 			return services;
 		}

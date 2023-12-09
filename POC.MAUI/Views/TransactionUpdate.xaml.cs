@@ -1,6 +1,6 @@
-﻿using POC.MAUI.Base;
+﻿using ControleFinanceiro.MAUI.Extensions;
 
-namespace POC.MAUI.Views;
+namespace ControleFinanceiro.MAUI.Views;
 
 public partial class TransactionUpdate : ContentPage
 {

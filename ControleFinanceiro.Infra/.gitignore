@@ -96,6 +96,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 ControleFinanceiro.Domain/obj/
+[Bb]in/
+[Oo]bj/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/

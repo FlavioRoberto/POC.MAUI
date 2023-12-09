@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace POC.MAUI;
+namespace ControleFinanceiro.MAUI;
 
 [Application]
 public class MainApplication : MauiApplication

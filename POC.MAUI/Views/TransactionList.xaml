@@ -1,115 +1,128 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="POC.MAUI.Views.TransactionList"
+             xmlns:local="clr-namespace:ControleFinanceiro.MAUI"
+             x:Class="ControleFinanceiro.MAUI.Views.TransactionList"
              Title="Listagem"
              NavigationPage.HasNavigationBar="False">
 
-    <Grid Style="{DynamicResource DegradeGridStyle}">
-        <VerticalStackLayout
-            HorizontalOptions="Fill"
-            VerticalOptions="Fill">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Resources/Styles/Colors.xaml" />
+    </ContentPage.Resources>
 
-            <Grid VerticalOptions="Start"
-                  Padding="15"
-                  ColumnDefinitions="50,*,Auto">
+    <ContentPage.Content>
 
-                <Label
-                    Style="{DynamicResource TransactIconStyle}"
-                    Text="S"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
+        <Grid Style="{DynamicResource DegradeGridStyle}">
 
-                <VerticalStackLayout Grid.Column="1">
-                    <Label Text="Salario"/>
-                    <Label Style="{DynamicResource TransactDescriptionStyle}"
-                           Text="10/10/23" />
+            <VerticalStackLayout
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
 
-                </VerticalStackLayout>
+                <CollectionView x:Name="CollectionViewTransactions">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid VerticalOptions="Start"
+                                  Padding="15"
+                                  ColumnDefinitions="50,*,Auto">
 
-                <Label Grid.Column="2"
-                       VerticalOptions="Center"
-                       Text="R$ 3600,00"
-                       TextColor="{StaticResource Tertiary}" />
-            </Grid>
+                                <Label Style="{DynamicResource TransactIconStyle}"
+                                       Text="S"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
 
-            <Border BackgroundColor="{StaticResource Black}"
-                    Stroke="Transparent"
-                    StrokeShape="RoundRectangle 30"
-                    Padding="10, 15"
-                    Margin="15">
+                                <VerticalStackLayout Grid.Column="1">
+                                    <Label Text="{Binding Description}"/>
+                                    <Label Style="{DynamicResource TransactDescriptionStyle}"
+                                           Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" />
+                                </VerticalStackLayout>
 
-                <Grid
-                    VerticalOptions="EndAndExpand"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Primary}}"
-                    ColumnDefinitions="*,80"
-                    RowDefinitions="Auto,Auto,30,Auto,Auto">
+                                <Label Grid.Column="2"
+                                       VerticalOptions="Center"
+                                       Text="{Binding Value, StringFormat='{0:C}'}"
+                                       TextColor="{StaticResource Tertiary}" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-                    <Label
-                       Grid.Column="0"
-                       Grid.Row="0"
-                       Margin="10, 0"                    
-                       VerticalOptions="Center"
-                       FontSize="18"
-                       TextColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Black}}"
-                       Text="Saldo" />
+                <Border BackgroundColor="{StaticResource Black}"
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 30"
+                        Padding="10, 15"
+                        Margin="15">
 
-                    <Label
-                        Grid.Column="0"
-                        Grid.Row="1"
-                        Margin="10, 0"
-                        FontSize="36"
-                        TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                        Text="R$ 2.760,00" />
+                    <Grid
+                        VerticalOptions="EndAndExpand"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource Primary}}"
+                        ColumnDefinitions="*,80"
+                        RowDefinitions="Auto,Auto,30,Auto,Auto">
 
-                    <Button
-                        Text="+"
-                        Grid.Column="1"
-                        Grid.RowSpan="2"
-                        Margin="10, 0"
-                        HorizontalOptions="Center"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
-                        FontSize="48"
-                        Padding="0"
-                        CornerRadius="27"
-                        HeightRequest="54"
-                        WidthRequest="54"
-                        TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
-                        Clicked="OnAddTransactionButtonClicked"/>
+                        <Label
+                           Grid.Column="0"
+                           Grid.Row="0"
+                           Margin="10, 0"                    
+                           VerticalOptions="Center"
+                           FontSize="18"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Black}}"
+                           Text="Saldo" />
 
-                    <Label
-                        Grid.Column="0"
-                        Grid.Row="3"
-                        Margin="10, 0"
-                        FontSize="8"
-                        TextColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Black}}"
-                        Text="Receita" />
+                        <Label
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Margin="10, 0"
+                            FontSize="36"
+                            TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                            Text="R$ 2.760,00" />
 
-                    <Label
-                        Grid.Column="0"
-                        Grid.Row="4"
-                        Margin="10, 0"
-                        FontSize="12"
-                        TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                        Text="R$ 3.600,00" />
+                        <Button
+                            Text="+"
+                            Grid.Column="1"
+                            Grid.RowSpan="2"
+                            Margin="10, 0"
+                            HorizontalOptions="Center"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
+                            FontSize="48"
+                            Padding="0"
+                            CornerRadius="27"
+                            HeightRequest="54"
+                            WidthRequest="54"
+                            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                            Clicked="OnAddTransactionButtonClicked"/>
 
-                    <Label
-                        Grid.Column="1"
-                        Grid.Row="3"
-                        Margin="10, 0"
-                        FontSize="8"
-                        TextColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Black}}"
-                        Text="Despesas" />
+                        <Label
+                            Grid.Column="0"
+                            Grid.Row="3"
+                            Margin="10, 0"
+                            FontSize="8"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Black}}"
+                            Text="Receita" />
 
-                    <Label
-                        Grid.Column="1"
-                        Grid.Row="4"
-                        FontSize="12"
-                        Margin="10, 0"
-                        TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                        Text="R$ 840,00" />
-                </Grid>
-            </Border>
-        </VerticalStackLayout>
-    </Grid>
+                        <Label
+                            Grid.Column="0"
+                            Grid.Row="4"
+                            Margin="10, 0"
+                            FontSize="12"
+                            TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                            Text="R$ 3.600,00" />
+
+                        <Label
+                            Grid.Column="1"
+                            Grid.Row="3"
+                            Margin="10, 0"
+                            FontSize="8"
+                            TextColor="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Black}}"
+                            Text="Despesas" />
+
+                        <Label
+                            Grid.Column="1"
+                            Grid.Row="4"
+                            FontSize="12"
+                            Margin="10, 0"
+                            TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
+                            Text="R$ 840,00" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

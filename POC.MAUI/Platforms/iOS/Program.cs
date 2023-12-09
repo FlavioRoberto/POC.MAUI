@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace POC.MAUI;
+namespace ControleFinanceiro.MAUI;
 
 public class Program
 {

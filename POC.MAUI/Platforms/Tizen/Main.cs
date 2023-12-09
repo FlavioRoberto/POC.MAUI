@@ -2,7 +2,7 @@
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace POC.MAUI;
+namespace ControleFinanceiro.MAUI;
 
 class Program : MauiApplication
 {

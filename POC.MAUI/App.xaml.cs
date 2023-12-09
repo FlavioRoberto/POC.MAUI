@@ -1,16 +1,16 @@
-﻿using POC.MAUI.Views;
+﻿using ControleFinanceiro.MAUI.Views;
 
-namespace POC.MAUI;
+namespace ControleFinanceiro.MAUI;
 
 public partial class App : Application
 {
-	public App()
+	public App(TransactionList transactionList)
 	{
 		Current.UserAppTheme = AppTheme.Light;
 
         InitializeComponent();
 
-		MainPage = new NavigationPage(new TransactionList());
+		MainPage = new NavigationPage(transactionList);
 	}
 }
 

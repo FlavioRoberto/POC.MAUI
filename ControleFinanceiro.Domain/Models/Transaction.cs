@@ -27,6 +27,11 @@ namespace ControleFinanceiro.Domain.Models
             IsValidTransaction();
         }
 
+        public void SetId(long transactionId)
+        {
+            Id = transactionId;
+        }
+
         private void IsValidTransaction()
         {
             if (Category == null)
@@ -41,7 +46,6 @@ namespace ControleFinanceiro.Domain.Models
             if (Value <= 0)
                 throw new DomainException("Campo valor é obrigatório!");
         }
-
     }
 }
 

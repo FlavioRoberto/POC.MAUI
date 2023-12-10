@@ -56,6 +56,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -63,6 +64,7 @@
 	  <None Remove="Resources\AppIcon\appiconfg %28copiar%29.svg" />
 	  <None Remove="Views\" />
 	  <None Remove="Extensions\" />
+	  <None Remove="Views\Controls\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\AppIcon\appiconfg_android.svg" />
@@ -73,5 +75,6 @@
 	<ItemGroup>
 	  <Folder Include="Views\" />
 	  <Folder Include="Extensions\" />
+	  <Folder Include="Views\Controls\" />
 	</ItemGroup>
 </Project>

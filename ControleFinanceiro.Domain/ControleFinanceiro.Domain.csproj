@@ -11,11 +11,14 @@
     <None Remove="Repositories\" />
     <None Remove="Extensions\" />
     <None Remove="Exceptions\" />
+    <None Remove="BuildingBlocks\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Repositories\" />
     <Folder Include="Extensions\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="BuildingBlocks\" />
+    <Folder Include="BuildingBlocks\Interfaces\" />
   </ItemGroup>
 </Project>

@@ -1,18 +1,27 @@
-﻿using ControleFinanceiro.Domain.Models;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using ControleFinanceiro.Domain.Models;
 using ControleFinanceiro.Domain.Repositories;
 using ControleFinanceiro.MAUI.Extensions;
+using ControleFinanceiro.MAUI.Views.Controls;
+using Microsoft.Maui.Controls;
 
 namespace ControleFinanceiro.MAUI.Views;
 
-public partial class TransactionAdd : ContentPage
+public partial class TransactionAdd
 {
     private readonly ITransactionRepository _repository;
-    private Transaction transaction;
+    private TransactionPageControl _control;
 
     public TransactionAdd(ITransactionRepository repository)
     {
         InitializeComponent();
         _repository = repository;
+        _control = new TransactionPageControl(this,
+                                              TransactionIncome,
+                                              TransactionDate,
+                                              TransactionDescription,
+                                              TransactionValue,
+                                              TransactionError);
     }
 
     void OnClosePageClicked(object sender, TappedEventArgs e)
@@ -22,59 +31,6 @@ public partial class TransactionAdd : ContentPage
 
     void OnSaveButtonClicked(object sender, EventArgs e)
     {
-        if (!IsValidTransaction())
-            return;
-
-        TransactionError.IsVisible = false;
-
-        _repository.Create(transaction);
-
-        var count = _repository.List().Count();
-
-        Navigation.PopModalAsync();
-    }
-
-    private bool IsValidTransaction()
-    {
-        var isValid = true;
-
-        try
-        {
-            transaction = new Transaction(TransactionDescription.Text,
-                                          GetTransactionValue(),
-                                          TransactionDate.Date,
-                                          GetCategory());
-        }
-        catch (Exception e)
-        {
-            isValid = false;
-            ShowError(e.Message);
-        }
-
-        return isValid;
-    }
-
-    private decimal GetTransactionValue()
-    {
-        decimal transactionValue;
-
-        if (!decimal.TryParse(TransactionValue.Text, out transactionValue))
-            throw new Exception("O compo valor precisa ser decimal!");
-
-        return transactionValue;
-    }
-
-    private TransactionCategory GetCategory()
-    {
-        if (TransactionIncome.IsChecked)
-            return TransactionCategory.Income;
-
-        return TransactionCategory.Expenses;
-    }
-
-    private void ShowError(string errorMessage)
-    {
-        TransactionError.IsVisible = true;
-        TransactionError.Text = errorMessage;
+        _control.Save(_repository.Create);
     }
 }

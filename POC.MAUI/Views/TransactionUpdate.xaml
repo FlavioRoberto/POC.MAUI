@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControleFinanceiro.MAUI.Views.TransactionUpdate"
              Title="TransactionAdd">
-   <ContentPage.Resources>
+    <ContentPage.Resources>
         <ResourceDictionary Source="/Resources/Styles/Colors.xaml" />
     </ContentPage.Resources>
 
@@ -38,18 +38,21 @@
                     </Image>
                 </Grid>
             </Border>
+
+            <Label Margin="15,0" x:Name="TransactionError" IsVisible="false" TextColor="{AppThemeBinding Light={StaticResource Error}, Dark={StaticResource Error}}" />
+
             <Grid ColumnDefinitions="*,*" Margin="30,0">
-                <RadioButton HorizontalOptions="Start" IsChecked="True" Content="Receita"/>
-                <RadioButton HorizontalOptions="End" Grid.Column="1" Content="Despesa" />
+                <RadioButton x:Name="TransactionIncome" HorizontalOptions="Start" IsChecked="True" Content="Receita"/>
+                <RadioButton x:Name="TransactionExpense" HorizontalOptions="End" Grid.Column="1" Content="Despesa" />
             </Grid>
 
-            <Entry  Placeholder="Descição" Margin="15,0"/>
+            <Entry x:Name="TransactionDescription" Placeholder="Descição" Margin="15,0"/>
 
-            <DatePicker Margin="15,0"/>
+            <DatePicker x:Name="TransactionDate" Margin="15,0"/>
 
-            <Entry  Placeholder="Valor" Margin="15,10"/>
+            <Entry x:Name="TransactionValue" Placeholder="Valor" Margin="15,10"/>
 
-            <Button Margin="15,0" Text="Salvar" HorizontalOptions="Center" />
+            <Button Clicked="OnSaveButtonClicked" Margin="15,0" Text="Salvar" HorizontalOptions="Center" />
         </VerticalStackLayout>
     </Grid>
 </ContentPage>

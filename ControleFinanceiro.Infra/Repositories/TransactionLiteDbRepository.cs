@@ -5,7 +5,7 @@ using LiteDB;
 namespace ControleFinanceiro.Infra.Repositories
 {
     public class TransactionLiteDbRepository : ITransactionRepository
-	{
+    {
         private readonly LiteDatabase _database;
         private const string collectionName = nameof(Transaction);
 
@@ -32,11 +32,11 @@ namespace ControleFinanceiro.Infra.Repositories
 
         public List<Transaction> List()
         {
-           return _database
-                      .GetCollection<Transaction>(collectionName)
-                      .Query()
-                      .OrderByDescending(x => x.Date)
-                      .ToList();
+            return _database
+                       .GetCollection<Transaction>(collectionName)
+                       .Query()
+                       .OrderByDescending(x => x.Date)
+                       .ToList();
         }
 
         public void Update(Transaction transaction)

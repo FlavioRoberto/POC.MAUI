@@ -25,6 +25,11 @@
                                   Padding="15"
                                   ColumnDefinitions="50,*,Auto">
 
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                          Tapped="OnUpdateTransactionButtonClicked" />
+                                </Grid.GestureRecognizers>
+
                                 <Label Style="{DynamicResource TransactIconStyle}"
                                        Text="S"
                                        VerticalOptions="Center"
@@ -72,7 +77,7 @@
                             Margin="10, 0"
                             FontSize="36"
                             TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                            Text="R$ 2.760,00" />
+                            x:Name="WalletBalance"/>
 
                         <Button
                             Text="+"
@@ -103,7 +108,7 @@
                             Margin="10, 0"
                             FontSize="12"
                             TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                            Text="R$ 3.600,00" />
+                            x:Name="WalletIncome"/>
 
                         <Label
                             Grid.Column="1"
@@ -119,7 +124,7 @@
                             FontSize="12"
                             Margin="10, 0"
                             TextColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"
-                            Text="R$ 840,00" />
+                            x:Name="WalletExpenses"/>
                     </Grid>
                 </Border>
             </VerticalStackLayout>

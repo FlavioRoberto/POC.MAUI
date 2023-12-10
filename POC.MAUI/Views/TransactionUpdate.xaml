@@ -48,7 +48,7 @@
 
             <Entry x:Name="TransactionDescription" Placeholder="Descição" Margin="15,0"/>
 
-            <DatePicker x:Name="TransactionDate" Margin="15,0"/>
+            <DatePicker x:Name="TransactionDate" Format="dd/MM/yyyy"  Margin="15,0"/>
 
             <Entry x:Name="TransactionValue" Placeholder="Valor" Margin="15,10"/>
 

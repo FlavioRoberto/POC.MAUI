@@ -1,32 +1,29 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using ControleFinanceiro.Domain.Models;
-using ControleFinanceiro.Domain.Repositories;
-using ControleFinanceiro.MAUI.Extensions;
+﻿using ControleFinanceiro.Domain.Repositories;
 using ControleFinanceiro.MAUI.Views.Controls;
-using Microsoft.Maui.Controls;
 
 namespace ControleFinanceiro.MAUI.Views;
 
-public partial class TransactionAdd
+public partial class TransactionAdd : TransactionPage
 {
     private readonly ITransactionRepository _repository;
     private TransactionPageControl _control;
+    RadioButton TransactionPage.TransactionIncome => TransactionIncome;
+    DatePicker TransactionPage.TransactionDate => TransactionDate;
+    Entry TransactionPage.TransactionDescription => TransactionDescription;
+    Entry TransactionPage.TransactionValue => TransactionValue;
+    Label TransactionPage.TransactionError => TransactionError;
+    INavigation TransactionPage.Navigation => Navigation;
 
     public TransactionAdd(ITransactionRepository repository)
     {
         InitializeComponent();
         _repository = repository;
-        _control = new TransactionPageControl(this,
-                                              TransactionIncome,
-                                              TransactionDate,
-                                              TransactionDescription,
-                                              TransactionValue,
-                                              TransactionError);
+        _control = new TransactionPageControl(this);
     }
 
     void OnClosePageClicked(object sender, TappedEventArgs e)
     {
-        this.OnClosePageClicked();
+        Navigation.PopModalAsync();
     }
 
     void OnSaveButtonClicked(object sender, EventArgs e)

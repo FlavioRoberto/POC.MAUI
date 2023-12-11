@@ -65,6 +65,7 @@
 	  <None Remove="Views\" />
 	  <None Remove="Extensions\" />
 	  <None Remove="Views\Controls\" />
+	  <None Remove="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\AppIcon\appiconfg_android.svg" />
@@ -76,5 +77,6 @@
 	  <Folder Include="Views\" />
 	  <Folder Include="Extensions\" />
 	  <Folder Include="Views\Controls\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 </Project>

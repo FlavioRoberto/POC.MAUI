@@ -4,23 +4,23 @@ using ControleFinanceiro.Domain.Models;
 
 namespace ControleFinanceiro.MAUI.Views.Controls
 {
+    public interface TransactionPage
+    {
+        RadioButton TransactionIncome { get; }
+        DatePicker TransactionDate { get; }
+        Entry TransactionDescription { get; }
+        Entry TransactionValue { get; }
+        Label TransactionError { get; }
+        INavigation Navigation { get; }
+    }
+
     public partial class TransactionPageControl
     {
-        private readonly ContentPage _contentPage;
-        private readonly RadioButton TransactionIncome;
-        private readonly DatePicker TransactionDate;
-        private readonly Entry TransactionDescription;
-        private readonly Entry TransactionValue;
-        private readonly Label TransactionError;
+        private readonly TransactionPage _page;
 
-        public TransactionPageControl(ContentPage contentPage, RadioButton transactionIncome, DatePicker transactionDate, Entry transactionDescription, Entry transactionValue, Label transactionError)
+        public TransactionPageControl(TransactionPage page)
         {
-            _contentPage = contentPage;
-            TransactionIncome = transactionIncome;
-            TransactionDate = transactionDate;
-            TransactionDescription = transactionDescription;
-            TransactionValue = transactionValue;
-            TransactionError = transactionError;
+            _page = page;
         }
 
         public void Save(Action<Transaction> saveAction)
@@ -30,13 +30,13 @@ namespace ControleFinanceiro.MAUI.Views.Controls
             if (transaction == null)
                 return;
 
-            TransactionError.IsVisible = false;
+            _page.TransactionError.IsVisible = false;
 
             saveAction(transaction);
 
             WeakReferenceMessenger.Default.Send(transaction);
 
-            _contentPage.Navigation.PopModalAsync();
+            _page.Navigation.PopModalAsync();
         }
 
         private Transaction GetTransaction()
@@ -45,9 +45,9 @@ namespace ControleFinanceiro.MAUI.Views.Controls
 
             try
             {
-                transaction = new Transaction(TransactionDescription.Text,
+                transaction = new Transaction(_page.TransactionDescription.Text,
                                               GetTransactionValue(),
-                                              TransactionDate.Date,
+                                              _page.TransactionDate.Date,
                                               GetCategory());
             }
             catch (Exception e)
@@ -63,7 +63,7 @@ namespace ControleFinanceiro.MAUI.Views.Controls
         {
             decimal transactionValue;
 
-            if (!decimal.TryParse(TransactionValue.Text, out transactionValue))
+            if (!decimal.TryParse(_page.TransactionValue.Text, out transactionValue))
                 throw new Exception("O compo valor precisa ser decimal!");
 
             return transactionValue;
@@ -71,7 +71,7 @@ namespace ControleFinanceiro.MAUI.Views.Controls
 
         private TransactionCategory GetCategory()
         {
-            if (TransactionIncome.IsChecked)
+            if (_page.TransactionIncome.IsChecked)
                 return TransactionCategory.Income;
 
             return TransactionCategory.Expenses;
@@ -79,8 +79,8 @@ namespace ControleFinanceiro.MAUI.Views.Controls
 
         private void ShowError(string errorMessage)
         {
-            TransactionError.IsVisible = true;
-            TransactionError.Text = errorMessage;
+            _page.TransactionError.IsVisible = true;
+            _page.TransactionError.Text = errorMessage;
         }
     }
 

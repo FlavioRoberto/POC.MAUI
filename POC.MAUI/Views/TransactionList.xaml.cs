@@ -26,7 +26,7 @@ public partial class TransactionList : ContentPage
     //    ListTransactions();
     //}
 
-    private void OnAddTransactionButtonClicked(object sender, EventArgs e)
+    void OnAddTransactionButtonClicked(object sender, EventArgs e)
     {
         this.PushModal<TransactionAdd>();
     }
@@ -38,6 +38,23 @@ public partial class TransactionList : ContentPage
         var transaction = (Transaction)gesture.CommandParameter;
         this.PushModal<TransactionUpdate, Transaction>(transaction);
     }
+
+    void OnRegisterTransaction()
+    {
+        WeakReferenceMessenger.Default.Register<Transaction>(this, (e, transaction) =>
+            LoadValues());
+    }
+
+    async void OnRemoveTransaction(object sender, TappedEventArgs e)
+    {
+        var result = await App.Current.MainPage.DisplayAlert("Remover!", "Deseja remover a transação?", "Sim", "Não");
+
+        if (result)
+            _repository.Delete(((Transaction)e.Parameter).Id);
+
+        LoadValues();
+    }
+
 
     private void LoadValues()
     {
@@ -61,12 +78,4 @@ public partial class TransactionList : ContentPage
     {
         return transactions.Where(x => x.Category == category).Sum(x => x.Value);
     }
-
-    private void OnRegisterTransaction()
-    {
-        WeakReferenceMessenger.Default.Register<Transaction>(this, (e, transaction) =>
-            LoadValues());
-    }
-
-
 }

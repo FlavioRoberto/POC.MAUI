@@ -7,6 +7,7 @@
     <Color x:Key="Primary">#DEEF75</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="Tertiary">#9ba751</Color>
+    <Color x:Key="DarkRed">#B22222</Color>
     <Color x:Key="Error">Red</Color>
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

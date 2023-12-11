@@ -1,13 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ControleFinanceiro.MAUI"
+             xmlns:converters="clr-namespace:ControleFinanceiro.MAUI.Converters"
              x:Class="ControleFinanceiro.MAUI.Views.TransactionList"
              Title="Listagem"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
-        <ResourceDictionary Source="/Resources/Styles/Colors.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/Colors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <converters:TransactionColorConverter x:Key="TransactionColorConverter" />
+            <converters:TransactionValueConverter x:Key="TransactionValueConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -30,10 +37,24 @@
                                                           Tapped="OnUpdateTransactionButtonClicked" />
                                 </Grid.GestureRecognizers>
 
-                                <Label Style="{DynamicResource TransactIconStyle}"
-                                       Text="S"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center" />
+                                <Border WidthRequest="40"
+                                        HeightRequest="40"
+                                        BackgroundColor="{StaticResource White}"
+                                        Stroke="Transparent"
+                                        StrokeShape="RoundRectangle 20">
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                              Tapped="OnRemoveTransaction"/>
+                                    </Border.GestureRecognizers>
+
+                                    <Label Style="{DynamicResource TransactIconStyle}"
+                                           Margin="5, 10"
+                                           Padding="2"
+                                           Text="X"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center" />
+                                </Border>
 
                                 <VerticalStackLayout Grid.Column="1">
                                     <Label Text="{Binding Description}"/>
@@ -43,8 +64,8 @@
 
                                 <Label Grid.Column="2"
                                        VerticalOptions="Center"
-                                       Text="{Binding Value, StringFormat='{0:C}'}"
-                                       TextColor="{StaticResource Tertiary}" />
+                                       Text="{Binding ., Converter={StaticResource TransactionValueConverter }}" 
+                                       TextColor="{Binding ., Converter={StaticResource TransactionColorConverter }}" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
